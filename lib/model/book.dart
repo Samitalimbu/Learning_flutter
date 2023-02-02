@@ -22,6 +22,13 @@ class Book{
         title: json['title'],
     );
   }
+  @override
+  String toString(){
+    return 'Book('
+        'imageUrl: $imageUrl,'
+        'title:$title,'
+        ')';
+  }
 
 }
 

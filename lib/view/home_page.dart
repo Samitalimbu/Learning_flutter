@@ -2,6 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:learning/view/detail_screen.dart';
 
 import '../model/book.dart';
 
@@ -21,8 +24,8 @@ class HomePageScreen extends StatelessWidget {
         title: const Text(
           "Hi jhon",style: TextStyle(color: Colors.black),
         ),
-        actions: [
-          Icon(CupertinoIcons.search,color: Colors.black,),
+        actions:const  [
+           Icon(CupertinoIcons.search,color: Colors.black,),
           Icon(CupertinoIcons.airplane,color: Colors.black,),
           SizedBox(width: 12),
         ],
@@ -45,47 +48,53 @@ class HomePageScreen extends StatelessWidget {
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (context,index){
                 final book=books[index];
-                return Container(
-                  width: 370.h,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 15,),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          //borderRadius: BorderRadius.only(topRight: Radius.circular(10)),
-                          child: Image.asset(
-                            book.imageUrl,
-                            width: 150.w,height: 260.h,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Expanded(child:Card(
-                          child:  Container(
-                            height: 200,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(book.title,style: TextStyle(fontSize: 15.sp),),
-                                Text(book.detail,style: TextStyle(fontSize: 15.sp),),
-                                Row(
-                                  children: [
-                                    Text(book.rating),
-                                    Text(book.genre)
-                                  ],
-                                )
-                              ],
+                return InkWell(
+                  onTap: (){
+                    Get.to(()=> DetailScreen(book),transition: Transition.leftToRight);
+
+                  },
+                  child: Container(
+                    width: 370.h,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 15,),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            //borderRadius: BorderRadius.only(topRight: Radius.circular(10)),
+                            child: Image.asset(
+                              book.imageUrl,
+                              width: 150.w,height: 260.h,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                        ),
-                        ),
+                          Expanded(child:Card(
+                            child:  Container(
+                              height: 200,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(book.title,style: TextStyle(fontSize: 15.sp),),
+                                  Text(book.detail,style: TextStyle(fontSize: 15.sp),),
+                                  Row(
+                                    children: [
+                                      Text(book.rating),
+                                      Text(book.genre)
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          ),
 
-                      ],
+                        ],
+                      ),
+
                     ),
 
                   ),
-
                 );
                 },
           ),

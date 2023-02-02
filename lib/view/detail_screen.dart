@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../model/book.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({Key? key}) : super(key: key);
-
+final Book book;
+DetailScreen(this.book);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Stack(
-          children: [
-            Image.asset("assets/images/book2.jpg",),
-            Container(
-              child: Text("Hello How are you ?"),
-            ),
-
-          ],
+        height: 250.h,
+        width: 300.w,
+       child: Image.asset(book.imageUrl),
         ),
-      ),
     );
   }
 }

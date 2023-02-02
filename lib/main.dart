@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learning/view/detail_screen.dart';
+import 'package:get/get.dart';
 import 'package:learning/view/home_page.dart';
 
 void main(){
-  runApp(Home());
+  runApp(ProviderScope(child: Home()));
   
 }
 class Home extends StatelessWidget {
@@ -18,11 +19,12 @@ class Home extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (BuildContext context,Widget? child){
-        return MaterialApp(
-          theme: ThemeData.light().copyWith(
-
-          ),
-          home: DetailScreen(),
+        return GetMaterialApp(
+         theme: ThemeData(
+           fontFamily: 'PlayfairDisplay',
+           useMaterial3: true
+         ),
+          home: HomePageScreen(),
           debugShowCheckedModeBanner: false,
 
         );
